@@ -28,4 +28,11 @@ public class EmployeeEntity {
 
     @OneToOne(mappedBy = "employee")
     private AccountEntity account;
+    public int Getid(){
+        return id;
+    }
+    public void Setid(int id){
+        this.id=id; 
+    }
+
 }

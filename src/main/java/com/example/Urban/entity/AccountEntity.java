@@ -24,4 +24,11 @@ public class AccountEntity {
     @JoinColumn(name = "employee_id")
     private EmployeeEntity employee;
 
+    public int Getid(){
+        return id;
+    }
+    public void Setid(int id){
+        this.id=id; 
+    }
+
 }

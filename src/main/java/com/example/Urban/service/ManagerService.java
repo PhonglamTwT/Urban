@@ -7,22 +7,15 @@ import com.example.Urban.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.Urban.dto.EmployeeAccountDTO;
+
 import java.util.List;
 
-@Service
 public class ManagerService {
 
-    @Autowired
-    private EmployeeRepository employeeRepository;
+    public List<EmployeeEntity> getAllEmployee();
 
-    @Autowired
-    private AccountRepository accountRepository;
-
-    public List<EmployeeEntity> getAllEmployee(){
-        return employeeRepository.findAll();
-    }
-
-    public List<AccountEntity> getAllAccount(){
-        return accountRepository.findAll();
-    }
+    public List<AccountEntity> getAllAccount();
+  
+    Boolean updateEmployee(int id, EmployeeAccountDTO employeeAccountDTO);
 }

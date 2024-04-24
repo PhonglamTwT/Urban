@@ -1,5 +1,8 @@
 package com.example.Urban.service;
 
-public interface ManagerService {
 
+import com.example.Urban.dto.EmployeeAccountDTO;
+
+public interface ManagerService {
+    Boolean updateEmployee(int id, EmployeeAccountDTO employeeAccountDTO);
 }

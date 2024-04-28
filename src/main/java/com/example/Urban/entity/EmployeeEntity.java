@@ -13,8 +13,23 @@ public class EmployeeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
+    @Column(name="image")
+    String image;
+
     @Column(name="name")
     String name;
+
+    @Column(name="email")
+    String email;
+
+    @Column(name="phone")
+    String phone;
+
+    @Column(name="gender")
+    String gender;
+
+    @Column(name="address")
+    String address;
 
     @Column(name="position")
     String position;
@@ -26,6 +41,7 @@ public class EmployeeEntity {
     @OneToMany(mappedBy = "employee")
     private List<EventEntity> events;
 
+    @ToString.Exclude
     @OneToOne(mappedBy = "employee")
     private AccountEntity account;
     public int Getid(){

@@ -2,8 +2,11 @@ package com.example.Urban.controller;
 
 
 import com.example.Urban.dto.EmployeeAccountDTO;
+import com.example.Urban.dto.EventDTO;
 import com.example.Urban.entity.EmployeeEntity;
+import com.example.Urban.entity.EventEntity;
 import com.example.Urban.service.EmployeeService;
+import com.example.Urban.service.EventService;
 import jakarta.persistence.Column;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +22,9 @@ import java.util.List;
 public class ManagerController {
     @Autowired
     private EmployeeService EmployeeService;
+
+    @Autowired
+    private EventService EventService;
 
     @GetMapping("/showEmploy")
     public ResponseEntity<List<EmployeeEntity>> GetAllEmployee() {
@@ -74,6 +80,52 @@ public class ManagerController {
     public ResponseEntity<?> deleteEmployee(@RequestParam int employeeId){
         try{
             if(EmployeeService.deleteEmployee(employeeId)){
+                return new ResponseEntity<>("Success", HttpStatus.OK);
+            }else {
+                return new ResponseEntity<>("Fail",HttpStatus.OK);
+            }
+        }catch (Exception e){
+            return new ResponseEntity<>("Fail",HttpStatus.OK);
+        }
+    }
+
+
+    @GetMapping("/showEvent")
+    public ResponseEntity<List<EventEntity>> GetAllEvent() {
+
+        List<EventEntity> event = EventService.getAllEvent();
+
+
+        return ResponseEntity.ok().body(event);
+
+    }
+
+    @PostMapping("/addEvent")
+    public ResponseEntity<String> addEvent(@RequestBody EventDTO eventDTO) {
+
+        EventEntity event = EventService.createEvent(eventDTO);
+
+        return ResponseEntity.ok().body("Event added successfully with event ID: " + event.getId());
+    }
+
+    @PostMapping("/updateEvent")
+    public ResponseEntity<?> updateEmployee(@RequestBody EventDTO eventDTO){
+        try{
+            if(EventService.updateEvent(eventDTO)){
+                return new ResponseEntity<>("Success", HttpStatus.OK);
+            }
+            else{
+                return new ResponseEntity<>("Fail",HttpStatus.OK);
+            }
+
+        }catch (Exception e) {
+            return new ResponseEntity<>("Fail", HttpStatus.OK);
+        }
+    }
+    @DeleteMapping("/deleteEvent")
+    public ResponseEntity<?> deleteEvent(@RequestParam int eventId){
+        try{
+            if(EventService.deleteEvent(eventId)){
                 return new ResponseEntity<>("Success", HttpStatus.OK);
             }else {
                 return new ResponseEntity<>("Fail",HttpStatus.OK);

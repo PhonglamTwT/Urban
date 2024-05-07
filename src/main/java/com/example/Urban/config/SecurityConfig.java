@@ -34,7 +34,7 @@ public class SecurityConfig {
         httpSecurity.csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(request-> request.requestMatchers("/auth/**", "/public/**").permitAll()
-                        .requestMatchers("/admin/**").hasAnyAuthority("admin")
+                        .requestMatchers("/manager/**").hasAnyAuthority("admin")
                         .requestMatchers("/nhanvien/**").hasAnyAuthority("nhanvien")
                         .requestMatchers("/adminnhanvien/**").hasAnyAuthority("admin", "nhanvien")
                         .anyRequest().authenticated())

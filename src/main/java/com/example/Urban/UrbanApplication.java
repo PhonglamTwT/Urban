@@ -9,7 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 
 @SpringBootApplication(exclude = SecurityAutoConfiguration.class)
-//@ComponentScan(basePackages = {"com.example.Urban.service", "com.example.Urban.controller"})
 public class UrbanApplication implements CommandLineRunner {
 	@Resource
 	FileStorageService fileStorageService;
